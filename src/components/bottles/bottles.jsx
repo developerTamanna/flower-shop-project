@@ -45,6 +45,8 @@ useEffect(()=>{
 
    const handleRemoveFromCart =id=>{
          console.log('remove item fromm the card', id)
+         const remainingCart =cart.filter(bottle => bottle.id !==id)
+         setCart(remainingCart)
    }
 
 
