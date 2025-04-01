@@ -43,6 +43,10 @@ useEffect(()=>{
    }
 
 
+   const handleRemoveFromCart =id=>{
+         console.log('remove item fromm the card', id)
+   }
+
 
     
 
@@ -58,7 +62,9 @@ useEffect(()=>{
            </div>
 
            <div>
-           <Cart cart={cart}></Cart>
+           <Cart cart={cart} handleRemoveFromCart ={handleRemoveFromCart}>
+            
+           </Cart>
            </div>
 
           <div className='grid grid-cols-3 gap-5 mt-20'>
