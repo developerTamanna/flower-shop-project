@@ -1,21 +1,38 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import Bottle from '../bottle/bottle';
+import { addToStoreCart, getStoreCart } from '../../utilities/localstorage';
 const Bottles = ({bottlesPromise}) => {
  
 
     // cart++
     const [cart, setCart] = useState([]);
 
+    const bottles = use(bottlesPromise);
+
+
+
+// useEffect
+
+useEffect(()=>{
+    const storedCartIds = getStoreCart()
+    console.log(storedCartIds)
+},[])
+
+
+
 
    const handleAddToCart =(bottle)=>{
     // console.log('button clicked', bottle)
     const newCart = [...cart, bottle]
     setCart(newCart)
+
+    //save the bottle id in the storage
+    addToStoreCart(bottle.id)
    }
 
 
 
-    const bottles = use(bottlesPromise)
+    
 
     // console.log(bottles)
     return (
