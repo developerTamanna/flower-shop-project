@@ -1,4 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
+import Cart from '../cart/cart';
 import Bottle from '../bottle/bottle';
 import { addToStoreCart, getStoreCart } from '../../utilities/localstorage';
 const Bottles = ({bottlesPromise}) => {
@@ -15,8 +16,19 @@ const Bottles = ({bottlesPromise}) => {
 
 useEffect(()=>{
     const storedCartIds = getStoreCart()
-    console.log(storedCartIds)
-},[])
+    // console.log(storedCartIds, bottles)
+   const storedCart =[]
+
+    for(const id of storedCartIds){
+        console.log(id)
+        const cartBottle = bottles.find(bottle=> bottle.id===id);
+        if(cartBottle){
+            storedCart.push(cartBottle)
+        }
+        console.log('stored cart', storedCart)
+        setCart(storedCart)
+    }
+},[bottles])
 
 
 
@@ -42,6 +54,11 @@ useEffect(()=>{
            </div>
            <div className='border-2 p-5 mt-20 rounded-xl w-40'>
            <h3 className='text-xl font-semibold text-blue-800'>Added to cart:{cart.length}</h3>
+           
+           </div>
+
+           <div>
+           <Cart cart={cart}></Cart>
            </div>
 
           <div className='grid grid-cols-3 gap-5 mt-20'>
